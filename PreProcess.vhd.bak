@@ -1,0 +1,33 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+entity Lab8 is
+port(A:in std_logic_vector(255 downto 0);
+Y: out std_logic_vector(511 downto 0));
+end Lab8;
+architecture bhv of Lab8 is
+---------------Define state type here-----------------------------
+---------------Define signals of state type-----------------------
+signal B: in std_logic_vector(511 downto 0);
+signal C: INTEGER := 0;
+begin
+clock_proc:process(clock,reset)
+begin
+	oo: for i in 0 to 255
+	B(511-i) <= A(i);
+	if(A(i)=1) then
+	C <= i;
+	end loop;
+	oO: for k in 0 to C
+	Y(k) <= B(511-C+k);
+	end loop;
+	Y(C+1) <= '1';
+	Oo: for j in C+2 to 447
+   Y(j) <= '0';
+   end loop;
+   variable a: std_logic_vector(63 downto 0) := std_logic_vector(to_unsigned((C),64));
+   OO: for l in 0 to 63
+   Y(l+448) <= a(l) ;
+   end loop;
+end process;
+end bhv;

@@ -1,0 +1,22 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity traffic is
+	  port(A: in std_logic_vector(95 downto 0);
+	       B: in std_logic_vector(95 downto 0);
+			 C: in std_logic_vector(95 downto 0);
+		  Y : out std_logic_vector(31 downto 0));
+end entity traffic;
+architecture Beh of MajorityFunction is
+begin
+    process(a, b, c)
+    begin
+	 for i in 0 to 31 loop
+        if (A(i) = '1' and B(i) = '1') or (A(i) = '1' and C(i) = '1') or (B(i) = '1' and C(i) = '1') then
+            y <= '1';
+        else
+            y <= '0';
+        end if;
+	 end loop;
+    end process;
+end Beh;

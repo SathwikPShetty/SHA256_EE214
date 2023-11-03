@@ -1,0 +1,22 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_ARITH.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
+
+entity Regist is 
+port(A: in std_logic_vector(31 downto 0); clock,reset:in std_logic; Q:out std_logic_vector(31 downto 0));
+end entity Regist;
+
+architecture behav of dff_reset is
+begin
+
+dff_reset_proc: process (clock,reset)
+begin
+one: dff_reset port map(D => A(0), clock => clock, reset => reset, Q => Q(0));
+two: dff_reset port map(D => A(1), clock => clock, reset => reset, Q => Q(1));
+
+
+
+end process dff_reset_proc;
+
+end behav;

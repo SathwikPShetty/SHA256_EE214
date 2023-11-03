@@ -1,0 +1,14 @@
+entity ChooseFunction is
+    Port (
+        a, b, c: in std_logic_vector(31 downto 0);
+        result: out std_logic_vector(31 downto 0)
+    );
+end entity ChooseFunction;
+
+architecture Behavioral of ChooseFunction is
+begin
+    process(a, b, c)
+    begin
+        result <= (a and b) xor ((not a) and c);
+    end process;
+end architecture Behavioral;

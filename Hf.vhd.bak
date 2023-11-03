@@ -1,0 +1,39 @@
+library ieee;
+use ieee.std_logic_1164.all;
+library ieee;
+use ieee.std_logic_1164.all;
+library work;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
+use work.Gates.all;
+entity Hf  is
+  port (A :in std_logic_vector(2 downto 0);
+  Y: out std_logic_vector(31 downto 0));
+end entity Capsigma0;
+architecture bhv of Capsigma0 is
+---------------Define state type here-----------------------------
+---------------Define signals of state type-----------------------
+begin
+clock_proc:process(clock,reset)
+begin
+case A is
+    when "000" =>
+        Y <= "6a09e667";
+    when "001" =>
+        Y <= "bb67ae85";
+    when "010" =>
+        Y <= "3c6ef372";
+    when "011" =>
+        Y <= "a54ff53a";
+    when "100" =>
+        Y <= "510e527f";
+    when "101" =>
+        Y <= "9b05688c";
+    when "110" =>
+        Y <= "1f83d9ab";
+    when "111" =>
+        Y <= "5be0cd19";
+    when others =>
+        Y <= (others => '0'); -- Handle any other case (if needed)
+end case;
+	end process;
+end bhv;

@@ -1,0 +1,41 @@
+library ieee;
+use ieee.std_logic_1164.all;
+library ieee;
+use ieee.std_logic_1164.all;
+library work;
+use work.Gates.all;
+entity sigma1  is
+  port (A :in std_logic_vector(31 downto 0);
+  Y: out std_logic_vector(31 downto 0));
+end entity sigma1;
+architecture bhv of sigma1 is
+---------------Define state type here-----------------------------
+---------------Define signals of state type-----------------------
+signal C: std_logic_vector:(31 downto 0);
+signal B: std_logic_vector:(31 downto 0);
+signal E: std_logic_vector:(31 downto 0);
+signal clk: std_logic := '0';
+begin
+right7: for i in 0 to 31 loop
+        if(i<25) then
+           C(i+7) <= A(i);
+		  else
+		     C(i-24) <= A(i);
+		  end if;
+		  end loop;
+right18: for i in 0 to 31 loop
+        if(i<14) then
+           B(i+7) <= A(i);
+		  else
+		     B(i-13) <= A(i);
+		  end if;
+		  end loop;
+rights3: for i in 0 to 31 loop
+        if(i<29) then
+           B(i+3) <= A(i);
+		  else
+		     B(i-28) <= '0';
+		  end if;
+		  end loop;
+Y <= B + C + E;
+end bhv;
